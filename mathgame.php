@@ -17,6 +17,32 @@
             'max_diff' => 10
         ];
     }
+
+    function generateProblem($level, $operator) {
+        $min = $level === 1 ? 1 : 11;
+        $max = $level === 1 ? 10 : 100;
+    
+        $num1 = rand($min, $max);
+        $num2 = rand($min, $max);
+    
+        switch ($operator) {
+            case 'subtraction':
+                $answer = $num1 - $num2;
+                $symbol = '-';
+                break;
+            case 'multiplication':
+                $answer = $num1 * $num2;
+                $symbol = '×';
+                break;
+            case 'addition':
+            default:
+                $answer = $num1 + $num2;
+                $symbol = '+';
+                break;
+        }
+    
+        return [$num1, $symbol, $num2, $answer];
+    }
     ?>
 </body>
 </html>
