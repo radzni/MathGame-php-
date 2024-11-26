@@ -46,7 +46,7 @@
 
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(isset($_POST['start_quiz'])) {
-            $_SESSION['settings']['levevl'] = (int)$_POST['level';]
+            $_SESSION['settings']['levevl'] = (int)$_POST['level'];
             $_SESSION['settings']['operator'] = $_POST['operator'];
             $_SESSION['settings']['num_items'] = (int)$_POST['num_items'];
             $_SESSION['settings']['max_diff'] = (int)$_POST['max_diff'];
@@ -56,8 +56,25 @@
                 'correct' => 0,
                 'wrong' => 0,
             ];
+
+            for($i = 0; $i < $_SESSION['settings']['num_items']; $i++) {
+                $_SESSION['quiz']['problems'][] = generateProblem(
+                    $_SESSION['settings']['level'],
+                    $_SESSION['settings']['operator']
+                );
+            }
+        } elseif(isset($_POST['answer'])) {
+            $current = array_shift($_SESSION['quiz']['problems']);
+            $userAnswer = (int)$_POST['answer'];
+
+            if ($userAnswer === $current[3]) {
+                $_SESSION['quiz']['correct']++;
+                $_SESSION['quiz']['score'] += 10;
+        } else {
+            $_SESSION['quiz']['wrong']++;
         }
     }
+}
     ?>
 </body>
 </html>
