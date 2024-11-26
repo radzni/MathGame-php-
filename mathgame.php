@@ -3,7 +3,7 @@
     session_start();
 
     if(!isset($_SESSION['settings'])){
-        $_SESSION['setting'] = [
+        $_SESSION['settings'] = [
             'level' => 1,
             'operator' => 'addition',
             'num_items' => 5,
