@@ -43,6 +43,21 @@
     
         return [$num1, $symbol, $num2, $answer];
     }
+
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if(isset($_POST['start_quiz'])) {
+            $_SESSION['settings']['levevl'] = (int)$_POST['level';]
+            $_SESSION['settings']['operator'] = $_POST['operator'];
+            $_SESSION['settings']['num_items'] = (int)$_POST['num_items'];
+            $_SESSION['settings']['max_diff'] = (int)$_POST['max_diff'];
+            $_SESSION['quiz'][
+                'problems' => [],
+                'score' => 0,
+                'correct' => 0,
+                'wrong' => 0,
+            ];
+        }
+    }
     ?>
 </body>
 </html>
